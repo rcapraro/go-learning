@@ -28,15 +28,15 @@ func FindReplaceFile(src, dst, old, new string) (occ int, lines []int, err error
 	scanner := bufio.NewScanner(srcFile)
 	writer := bufio.NewWriter(dstFile)
 	defer writer.Flush()
-	
+
 	lineNumber := 1
 	for scanner.Scan() {
 		found, res, o := ProcessLine(scanner.Text(), old, new)
-		if (found) {
+		if found {
 			occ += o
 			lines = append(lines, lineNumber)
 		}
-		lineNumber ++
+		lineNumber++
 		fmt.Fprintf(writer, res+"\n")
 	}
 	return occ, lines, nil
@@ -71,7 +71,7 @@ func main() {
 	len := len(lines)
 	for i, l := range lines {
 		fmt.Printf("%v", l)
-		if i < len - 1 {
+		if i < len-1 {
 			fmt.Printf(" - ")
 		}
 	}
