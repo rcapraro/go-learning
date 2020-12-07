@@ -16,6 +16,7 @@ func DrawWelcome() {
 func Draw(g *Game, guess string) {
 	drawTurns(g.TurnsLeft)
 	drawState(g, guess)
+	drawTurnsLeft(g)
 }
 
 func drawTurns(l int) {
@@ -142,4 +143,8 @@ func drawLetters(l []string) {
 		fmt.Printf("%v", c)
 	}
 	fmt.Println()
+}
+
+func drawTurnsLeft(g *Game) {
+	fmt.Printf("Turns left: %v\n", g.TurnsLeft)
 }
