@@ -18,7 +18,10 @@ func (d *Dictionary) Add(word string, definition string) error {
 		Definition: definition,
 		CreatedAt:  time.Now(),
 	}
-	enc.Encode(entry)
+	err := enc.Encode(entry)
+	if err != nil {
+		return err
+	}
 
 	return d.db.Update(func(txn *badger.Txn) error {
 		return txn.Set([]byte(word), buffer.Bytes())
